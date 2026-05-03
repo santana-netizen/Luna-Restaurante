@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luna Restaurante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --gold: #c9a227;
+      --dark: #111111;
+      --black: #000000;
+      --gray: #1f1f1f;
+      --light: #f5f5f5;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+                  url('Imagenes/Logo.jpg') center/cover;
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .logo i {
+      margin-right: 10px;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 25px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-text span {
+      color: var(--gold);
+    }
+
+    .hero-text p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      padding: 14px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #e0b52f;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+    }
+
+    .section-title p {
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .menu-card-content {
+      padding: 120px;
+    }
+
+    .menu-card h3 {
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .menu-image {
+      display: none;
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .menu-card:hover .menu-image,
+    .menu-card:target .menu-image {
+      display: block;
+    }
+
+    
+
+    .services {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service-box {
+      background: #0c0c0c;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(201,162,39,0.2);
+    }
+
+    .service-box i {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .delivery {
+      background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)),
+                  url('https://images.unsplash.com/photo-1526367790999-0150786686a2') center/cover;
+      color: white;
+      text-align: center;
+    }
+
+    .delivery .phone-cloud {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      padding: 20px 35px;
+      border-radius: 50px;
+      margin-top: 25px;
+      border: 1px solid var(--gold);
+      font-size: 1.3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .contact-card {
+      background: var(--white);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .contact-item {
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item i {
+      color: var(--gold);
+      margin-right: 12px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      width: 50px;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      background: var(--dark);
+      color: var(--gold);
+      border-radius: 50%;
+      margin-right: 15px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    footer {
+      background: var(--black);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-content">
+      <div class="logo"><i class="fas fa-utensils"></i>Luna Restaurante</div>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#horarios">Horarios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio">
+    <div class="container hero">
+      <div class="hero-text">
+        <h1>Sabores que <span>enamoran</span></h1>
+        <p>Ofrecemos desayunos, almuerzos variados diariamente, comidas saludables y mariscos</p>
+        <a href="Archivo/Menú-Luna Restaurante.pdf" class="btn">Descarga nuestro menú</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="menu">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestro Menú</h2>
+        <p>Descubre nuestras especialidades</p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card" id="desayunos">
+          <img src="Imagenes/Desayuno.jpg" alt="Desayunos">
+          <div class="menu-card-content">
+            <h3>Desayunos</h3>
+            <p>Deliciosos desayunos para comenzar tu día con energía.</p>
+            <a href="#desayunos" class="btn">Menú</a>
+            <img class="menu-image" src="Imagenes/Menú desayunos.jpg" alt="Menú de desayunos">
+          </div>
+        </div>
+
+      <div class="menu-card" id="saludable">
+          <img src="Imagenes/Almuerzos.jpg" alt="Almuerzos">
+          <div class="menu-card-content">
+            <h3>Almuerzos</h3>
+            <p>Nuestros almuerzos son variados diariamente</p>
+          </div>
+        </div>
+
+        <div class="menu-card" id="saludable">
+          <img src="Imagenes/Plato saludable.jpg" alt="Comida saludable">
+          <div class="menu-card-content">
+            <h3>Comidas Saludables</h3>
+            <p>Opciones nutritivas, frescas y llenas de sabor personalizadas según su necesidad.</p>
+          </div>
+        </div>
+
+        <div class="menu-card" id="mariscos">
+          <img src="Imagenes/Marisco.jpg" alt="Mariscos">
+          <div class="menu-card-content">
+            <h3>Mariscos</h3>
+            <p>Platos frescos del mar preparados al momento.</p>
+            <a href="#mariscos" class="btn">Menú</a>
+            <img class="menu-image" src="Imagenes/Menú mariscos.jpg" alt="Menú de mariscos">
+          </div>
+        </div>
+
+        <div class="menu-card" id="Combos de cangrejos">
+          <img src="Imagenes/Cangrejos.jpg" alt="Cangrejoss">
+          <div class="menu-card-content">
+            <h3>Combos de cangrejos</h3>
+            <p>Contamos con 3 combos de cangrejos</p>
+            <a href="#Cangrejos" class="btn">Menú</a>
+            <img class="menu-image" src="Imagenes/Combos Mariscos.jpg" alt="Menú de mariscos">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+     <section id="servicios">
+      <div class="services-grid">
+        <div class="service-box">
+          <i class="fas fa-bowl-food"></i>
+          <h3 style="color: white;">Ejecutivos</h3>
+          <p style="color: white;">Menú diferente cada día con opciones deliciosas y balanceadas.</p>
+        </div>
+
+        <div class="service-box">
+          <i class="fas fa-fish"></i>
+          <h3 style="color: white;">Especialidades del Mar</h3>
+          <p style="color: white;">frescos con recetas exclusivas de la casa.</p>
+        </div>
+
+        <div class="service-box">
+          <i class="fas fa-leaf"></i>
+          <h3 style="color: white;">Opciones Saludables</h3>
+          <p style="color: white;">Platos ideales para un estilo de vida equilibrado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+     <section id="horarios">
+     <div class="horarios-container">
+        <div class="service-box">
+          <i class="fas fa-calendar"></i>
+          <h3 style="color: white;"> Horarios de atención </h3>
+          <p style="color: white;">Lunes a Jueves</p>
+          <div style="color: white;">7:30 AM - 15:00 PM </div>
+          <p style="color: white;"> Viernes a Domingo</p>
+           <div style="color: white;">7:30 AM - 20:30 PM </div>
+            <p style="color: white;"> Trabajamos con mariscos a partir de las 16:30 PM (viernes a domingo)</p>
+      </div>
+  </section>
+
+  <section class="delivery">
+    <div class="container">
+      <h2>🚚 Pedidos a Domicilio</h2>
+      <p>Recibe tus platos favoritos en la comodidad de tu hogar.</p>
+      <div class="phone-cloud">📞 +593 99 040 7034</div>
+    </div>
+  </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contáctanos</h2>
+        <p>Estamos listos para atenderte</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <a href="https://maps.app.goo.gl/pH3xVDnMRUtFLkX16">Nuestra dirección</a>
+           Seminario, y y Felix Antonio Guerra &, San Juan
+          </div>
+
+          <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://w.app/6loirw" target="_blank">Escríbenos por WhatsApp</a>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+           +593 99 040 7034
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61586948144541" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/lunarestaurante26?igsh=MWc3YWhlMDNveGE2ZQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Luna Restaurante 2026</p>
+  </footer>
+</body>
+</html>
